@@ -34,7 +34,7 @@ export class AppComponent {
   predict() {
     if (!this.selectedImage) return;
 
-    this.loading = true; // 🔁 Start loading
+    this.loading = true; 
 
     const headers = new HttpHeaders({
       'Prediction-Key': this.predictionKey,
@@ -49,11 +49,11 @@ export class AppComponent {
         .subscribe({
           next: (response) => {
             this.predictions = response.predictions;
-            this.loading = false; // ✅ Stop loading
+            this.loading = false; 
           },
           error: (error) => {
             console.error('Prediction error:', error);
-            this.loading = false; // ✅ Stop loading on error
+            this.loading = false;
           }
         });
     };
