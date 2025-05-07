@@ -14,6 +14,7 @@ export class AppComponent {
   imagePreview: string | ArrayBuffer | null = null;
   predictions: any[] = [];
   loading: boolean = false; 
+  topPrediction: any;
 
   // For image URL
   // predictionKey='A83Ti7WvL76vmyFAXrIOOqQOw5KyyQvOHmEAabxEbI0VxMFKJxA3JQQJ99BEACYeBjFXJ3w3AAAIACOGNGTp'
@@ -22,7 +23,7 @@ export class AppComponent {
 
   //Image file
   predictionKey = 'A83Ti7WvL76vmyFAXrIOOqQOw5KyyQvOHmEAabxEbI0VxMFKJxA3JQQJ99BEACYeBjFXJ3w3AAAIACOGNGTp';
-  endpoint = 'https://mscustomevisionai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/71171d66-bbc3-49cf-8bca-3acbdf8e30c5/classify/iterations/TreeClassifier/image';
+  endpoint = 'https://mscustomevisionai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/71171d66-bbc3-49cf-8bca-3acbdf8e30c5/classify/iterations/Iteration2/image';
 
   constructor(private http: HttpClient) {}
 
@@ -56,7 +57,8 @@ export class AppComponent {
         .subscribe({                                             // Subscibing to the response i.e getting it
           next: (response) => {
             this.predictions = response.predictions;           // Extracting it into prediction
-            console.log(this.predictions);
+            this.topPrediction = this.predictions.sort((a, b) => b.probability - a.probability)[0];
+            console.log(this.topPrediction);
             this.loading = false; 
           },
           error: (error) => { 

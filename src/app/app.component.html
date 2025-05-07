@@ -2,33 +2,32 @@
   <h1 class="text-center m-2">Tree Clasifier</h1>
 
   <div class="text-center m-5 ">
-    <div class="d-flex justify-content-center align-items-center mb-3">
-      <!-- accept="image/*" restricts the file types a user can Select -->
-      <input class="w-25" type="file" accept="image/*" (change)="onImageChange($event)" />  
-      <button class="btn btn-info" (click)="predict()" [disabled]="!selectedImage">Predict</button>
-    </div>
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <!-- accept="image/*" restricts the file types a user can Select -->
+        <input class="w-25" type="file" accept="image/*" (change)="onImageChange($event)" />  
+        <button class="btn btn-info" (click)="predict()" [disabled]="!selectedImage">Predict</button>
+      </div>
 
-    <!-- Spinner when loading -->
-<div *ngIf="loading" class="text-center my-4">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
+      <!-- Spinner when loading -->
+      <div *ngIf="loading" class="text-center my-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
 
-<!-- Show image preview only if not loading -->
-<div class="m-2" *ngIf="imagePreview && !loading">
-  <!-- [two way binding for imgpreviw] -->
-  <img [src]="imagePreview" alt="Preview" style="max-height: 300px;" /> 
-</div>
+      <!-- Show image preview only if not loading -->
+      <div class="m-2" *ngIf="imagePreview && !loading">
+        <!-- [two way binding for imgpreviw] -->
+        <img [src]="imagePreview" alt="Preview" style="max-height: 300px;" /> 
+      </div>
 
-<!-- Show predictions only if not loading -->
-<div *ngIf="!loading && predictions.length > 0" style="margin-top: 20px;">
-  <h3>Predictions:</h3>
-  <div *ngFor="let p of predictions">
-    {{ p.tagName }}: {{ (p.probability * 100) | number: '1.0-2' }}%
-  </div>
-</div>
-
+  <!-- Show predictions only if not loading -->
+      <div *ngIf="!loading && topPrediction" style="margin-top: 20px;">
+        <h3>The Image Prediction:</h3>
+        <div>
+          {{ topPrediction.tagName }}: {{ (topPrediction.probability * 100) | number: '1.0-2' }}%
+        </div>
+      </div>
   </div>
   
 </div>
