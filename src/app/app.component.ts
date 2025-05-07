@@ -38,6 +38,7 @@ export class AppComponent {
     reader.onload = e => this.imagePreview = reader.result; //callback function when the file has finished loading and sets result[base 64] to the imagepreview..
     reader.readAsDataURL(file);//Reads file and converts it to a base64-encoded string (used for image previews)
     this.predictions = [];
+    this.topPrediction = null;
   }
 
   predict() {
