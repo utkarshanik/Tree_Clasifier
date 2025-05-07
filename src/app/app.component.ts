@@ -15,6 +15,7 @@ export class AppComponent {
   predictions: any[] = [];
   loading: boolean = false; 
   topPrediction: any;
+  customMessage: any;
 
   // For image URL
   // predictionKey='A83Ti7WvL76vmyFAXrIOOqQOw5KyyQvOHmEAabxEbI0VxMFKJxA3JQQJ99BEACYeBjFXJ3w3AAAIACOGNGTp'
@@ -60,6 +61,19 @@ export class AppComponent {
             this.predictions = response.predictions;           // Extracting it into prediction
             this.topPrediction = this.predictions.sort((a, b) => b.probability - a.probability)[0];
             console.log(this.topPrediction);
+            const confidence = this.topPrediction.probability;
+            const tag= this.topPrediction.tagName.toLowerCase();;
+            console.log(tag);
+            
+            let treeTag=['palm', 'neem', 'maple', 'eucalyptus', 'gulmohar'];
+            if(treeTag.includes(tag)&& confidence >= 0.8)
+            {
+              this.customMessage=`The image is of a ${this.topPrediction.tagName} tree.`;
+            }
+            else 
+            {
+              this.customMessage = `This does not appear to be a tree image.`;
+            }
             this.loading = false; 
           },
           error: (error) => { 
@@ -69,4 +83,5 @@ export class AppComponent {
         });
     };
   }
+  
 }
