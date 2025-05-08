@@ -5,7 +5,7 @@
       <div class="col-9  d-flex justify-content-center align-items-center mb-3">
         <!-- accept="image/*" restricts the file types a user can Select -->
         <input class="col-12 col-md-6 " type="file" accept="image/*" (change)="onImageChange($event)" />  
-        <button class="btn btn-info " (click)="predict()" [disabled]="!selectedImage">Predict</button>
+        <button class="btn btn-dark " (click)="predict()" [disabled]="!selectedImage">Predict</button>
       </div>
 
       <!-- Spinner when loading -->
