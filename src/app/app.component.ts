@@ -68,20 +68,19 @@ export class AppComponent {
             let treeTag=['palm', 'neem', 'maple', 'eucalyptus', 'gulmohar','forest','unknown'];
             if(treeTag.includes(tag)&& confidence >= 0.5)
             {
-              this.customMessage=`The image is of a ${this.topPrediction.tagName} tree.`;
-            }
-            // else if(treeTag.includes(tag)&& confidence >= 0.7)
-            // {
-            //   this.customMessage=`The image is of a ${this.topPrediction.tagName} tree`;
-            // }
-            // else if(treeTag.includes(tag)&& confidence >= 0.6)
-            // {
-            //   this.customMessage=`The image is of a ${this.topPrediction.tagName} `;
-            // }
-            else 
-            {
-              this.customMessage = `This does not appear to be a tree image.`;
-            }
+              if (tag === 'forest')
+              {
+                this.customMessage = `This image is kind of forest area`;
+              }
+              else
+              {
+                this.customMessage = `The image is of a ${this.topPrediction.tagName} tree.`;
+              }   
+            } 
+              else 
+              {
+                this.customMessage = `This does not appear to be a tree image.`;
+              }
             this.loading = false; 
           },
           error: (error) => { 
