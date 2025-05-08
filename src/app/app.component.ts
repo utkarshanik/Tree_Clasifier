@@ -24,7 +24,7 @@ export class AppComponent {
 
   //Image file
   predictionKey = 'A83Ti7WvL76vmyFAXrIOOqQOw5KyyQvOHmEAabxEbI0VxMFKJxA3JQQJ99BEACYeBjFXJ3w3AAAIACOGNGTp';
-  endpoint = 'https://mscustomevisionai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/71171d66-bbc3-49cf-8bca-3acbdf8e30c5/classify/iterations/Iteration2/image';
+  endpoint = 'https://mscustomevisionai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/71171d66-bbc3-49cf-8bca-3acbdf8e30c5/classify/iterations/Iteration4/image';
 
   constructor(private http: HttpClient) {}
 
@@ -65,11 +65,19 @@ export class AppComponent {
             const tag= this.topPrediction.tagName.toLowerCase();;
             console.log(tag);
             
-            let treeTag=['palm', 'neem', 'maple', 'eucalyptus', 'gulmohar'];
-            if(treeTag.includes(tag)&& confidence >= 0.8)
+            let treeTag=['palm', 'neem', 'maple', 'eucalyptus', 'gulmohar','forest','unknown'];
+            if(treeTag.includes(tag)&& confidence >= 0.5)
             {
               this.customMessage=`The image is of a ${this.topPrediction.tagName} tree.`;
             }
+            // else if(treeTag.includes(tag)&& confidence >= 0.7)
+            // {
+            //   this.customMessage=`The image is of a ${this.topPrediction.tagName} tree`;
+            // }
+            // else if(treeTag.includes(tag)&& confidence >= 0.6)
+            // {
+            //   this.customMessage=`The image is of a ${this.topPrediction.tagName} `;
+            // }
             else 
             {
               this.customMessage = `This does not appear to be a tree image.`;
