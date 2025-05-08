@@ -1,11 +1,11 @@
-<div class=" gg p-3 ">
-  <h1 class="text-center m-2">Tree Clasifier</h1>
+<div class=" gg p-3 d-flex justify-content-start align-items-center flex-column ">
+  <h1 class="m-2">Tree Clasifier</h1>
 
-  <div class="text-center m-5 ">
-      <div class="d-flex justify-content-center align-items-center mb-3">
+  <div class="col-12  col-md-6 d-flex flex-column justify-content-center align-items-center text-center m-5 ">
+      <div class="col-9  d-flex justify-content-center align-items-center mb-3">
         <!-- accept="image/*" restricts the file types a user can Select -->
-        <input class="w-25" type="file" accept="image/*" (change)="onImageChange($event)" />  
-        <button class="btn btn-info" (click)="predict()" [disabled]="!selectedImage">Predict</button>
+        <input class="col-12 col-md-6 " type="file" accept="image/*" (change)="onImageChange($event)" />  
+        <button class="btn btn-info " (click)="predict()" [disabled]="!selectedImage">Predict</button>
       </div>
 
       <!-- Spinner when loading -->
